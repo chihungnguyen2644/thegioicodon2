@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>thegioicodon.com</title>
+    <!-- Tailwind CSS CDN for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'], // Using Inter font as default
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom styles for the sketch, mostly for background images/colors */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f5f5f7; /* Light gray background */
+        }
+        .hero-section-1 {
+            background-color: white; /* background phần banner đầu tiên */
+            color: black;
+            padding-top: 80px; /* Space for fixed nav */
+        }
+        .hero-section-2 {
+            background-color: #fbfbfd; /* Light background for the second hero */
+            color: #1d1d1f; /* Dark text */
+            padding-top: 80px; /* Space for fixed nav */
+        }
+        .product-card {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 1px 10px rgba(0, 0, 0, 0.08); /* Subtle shadow */
+            transition: transform 0.2s ease-in-out;
+        }
+        .product-card:hover {
+            transform: translateY(-5px); /* Slight lift on hover */
+        }
+        
+        /* Kiểu cho gradient text */
+        .gradient-text {
+            /* Define the gradient background */
+            background: linear-gradient(to right, #4A90E2, #7D26C9, #D93B3B, #FF8C00);
+            /* Clip the background to the text */
+            -webkit-background-clip: text;
+            background-clip: text;
+            /* Make the text transparent so the background shows through */
+            -webkit-text-fill-color: transparent;
+            color: transparent; /* Fallback for browsers that don't support -webkit-text-fill-color */
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 w-full bg-white bg-opacity-90 backdrop-blur-md shadow-sm z-50 py-3">
+        <div class="container mx-auto px-4 flex justify-between items-center text-sm font-medium text-gray-700">
+            <!-- Apple Logo Placeholder (can be an SVG or image) -->
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5g5pVFnuqZgXagWuTQEv7Hz22PMdHFVA4og&s" alt="Apple Logo" style="width:50px;height:50px;" class="h-8 w-auto"
+
+            <! -- Navigation Links -->
+            <div class="hidden md:flex space-x-8">
+                <a href="#" class="hover:text-black transition-colors duration-200">Cửa Hàng</a>
+                <a href="#" class="hover:text-black transition-colors duration-200">Mac</a>
+                <a href="#" class="hover:text-black transition-colors duration-200">iPad</a>
+                <a href="#" class="hover:text-black transition-colors duration-200">iPhone</a>
+                <a href="#" class="hover:text-black transition-colors duration-200">Watch</a>
+                <a href="#" class="hover:text-black transition-colors duration-200">AirPods</a>
+                <a href="#" class="hover:text-black transition-colors duration-200">TV & Nhà</a>
+                <a href="#" class="hover:text-black transition-colors duration-200">Giải Trí</a>
+                <a href="#" class="hover:text-black transition-colors duration-200">Phụ Kiện</a>
+                <a href="#" class="hover:text-black transition-colors duration-200">Hỗ Trợ</a>
+            </div>
+
+            <!-- Search and Bag Icons (placeholders) -->
+            <div class="flex items-center space-x-6">
+                <a href="#" class="text-gray-700 hover:text-black transition-colors duration-200">
+                    <!-- Search Icon (example SVG for simplicity) -->
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </a>
+                <a href="#" class="text-gray-700 hover:text-black transition-colors duration-200">
+                    <!-- Bag Icon (example SVG for simplicity) -->
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                </a>
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-gray-700 hover:text-black focus:outline-none" onclick="toggleMobileMenu()">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-white bg-opacity-95 backdrop-blur-md pb-4 pt-2 shadow-lg">
+            <div class="flex flex-col items-center space-y-4 text-gray-700">
+                <a href="#" class="w-full text-center py-2 hover:bg-gray-100">Cửa Hàng</a>
+                <a href="#" class="w-full text-center py-2 hover:bg-gray-100">Mac</a>
+                <a href="#" class="w-full text-center py-2 hover:bg-gray-100">iPad</a>
+                <a href="#" class="w-full text-center py-2 hover:bg-gray-100">iPhone</a>
+                <a href="#" class="w-full text-center py-2 hover:bg-gray-100">Watch</a>
+                <a href="#" class="w-full text-center py-2 hover:bg-gray-100">AirPods</a>
+                <a href="#" class="w-full text-center py-2 hover:bg-gray-100">TV & Nhà</a>
+                <a href="#" class="w-full text-center py-2 hover:bg-gray-100">Giải Trí</a>
+                <a href="#" class="w-full text-center py-2 hover:bg-gray-100">Phụ Kiện</a>
+                <a href="#" class="w-full text-center py-2 hover:bg-gray-100">Hỗ Trợ</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section 1 (Main Banner) -->
+    <section class="hero-section-1 text-center py-20 px-4 md:py-32 lg:py-40 min-h-screen flex items-center justify-center">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-semibold mb-4 tracking-tight">
+                iPhone
+            </h1>
+            <h2 class="text-xl md:text-2xl lg:text-3xl mb-8">
+                Giới thiệu dòng iPhone 16 mới nhất.
+            </h2>
+            <!-- Gradient Text (html**Giải thích:**   
+  - `text-3xl` cho mobile  
+  - `md:text-5xl` cho tablet  
+  - `lg:text-6xl` cho desktop  ) -->
+    <section class="bg-white py-5 px-4 text-center">
+        <div class="max-w-4xl mx-auto">
+            <p class="gradient-text text-1xl md:text-1xl lg:text-1xl font-semibold mb-4 tracking-tight">
+                Được thiết kế cho Apple Intelligence.
+            </p>
+        </div>
+    </section>
+            
+            <div class="flex justify-center space-x-6 text-lg md:text-xl">
+                <a href="https://www.apple.com/vn/iphone/" class="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">Tìm hiểu thêm ></a>
+                <a href="https://www.apple.com/vn/shop/buy-iphone" class="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer" >Mua sắm iPhone ></a>
+            </div>
+            <!-- Placeholder for a large image (e.g., iPhone 16 product family) -->
+            <div class="mt-16 md:mt-30 flex justify-center">
+                <video width="3840" height="2160" loop autoplay muted class="rounded-lg shadow-lg">
+                <source src="https://www.apple.com/105/media/us/iphone/family/2025/e7ff365a-cb59-4ce9-9cdf-4cb965455b69/anim/welcome/xlarge_2x.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hero Section 2 (Secondary Promotional Banner) -->
+    <section class="hero-section-2 text-center py-16 px-4 md:py-24 lg:py-32">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-3xl md:text-5xl lg:text-6xl font-semibold mb-4 tracking-tight">
+                Apple Watch
+            </h1>
+            <h2 class="text-xl md:text-2xl lg:text-3xl mb-8">
+                Thiết bị tối ưu cho cuộc sống khỏe mạnh.
+            </h2>
+            <div class="flex justify-center space-x-6 text-lg md:text-xl">
+                <a href="https://www.apple.com/vn/watch/" class="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">Tìm hiểu thêm ></a>               
+                <a href="https://www.apple.com/vn/shop/buy-watch" class="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">Mua sắm ></a>
+            </div>
+            <!-- Placeholder for a large image (e.g., Apple Watch Ultra 2) -->
+            <div class="mt-8 md:mt-16 flex justify-center">
+                <video width="3840" height="2160" loop autoplay muted class="rounded-lg shadow-lg">
+                <source src="https://www.apple.com/105/media/ww/watch/2024/f0b51c31-e8a5-44d7-b23d-51bd2858454a/anim/hero/xlarge_2x.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Grid Section -->
+    <section class="container mx-auto px-4 py-16">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Product Card 1 -->
+            <div class="product-card p-6 text-center">
+                <h3 class="text-2xl font-semibold mb-2">MacBook</h3>
+                <p class="text-lg text-gray-600 mb-4">Bạn nghĩ được là Mac làm được.</p>
+                <img src="https://www.apple.com/v/mac/home/cg/images/meta/mac__c3zv0c86zu0y_og.png" alt="Mac product image" class="mx-auto my-4 rounded-md">
+                <div class="flex justify-center space-x-4 text-base">
+                  <a href="#" class="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">Tìm Hiểu Thêm ></a>
+                    <a href="#" class="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer" >Mua ></a>
+                </div>
+            </div>
+
+            <!-- Product Card 2 -->
+            <div class="product-card p-6 text-center">
+                <h3 class="text-2xl font-semibold mb-2">iPad</h3>
+                <p class="text-lg text-gray-600 mb-4">Chạm, vẽ và gõ phím trên cùng một thiết bị tuyệt diệu.</p>
+                <img src="https://www.notebookcheck.net/fileadmin/Notebooks/News/_nc3/ipad_lineup.jpg" alt="iPad Product image" class="mx-auto my-4 rounded-md">
+                <div class="flex justify-center space-x-4 text-base">
+                  <a href="#" class="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">Tìm Hiểu Thêm ></a>
+                    <a href="#" class="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">Mua ></a>
+                </div>
+            </div>
+
+            <!-- Product Card 3 -->
+            <div class="product-card p-6 text-center">
+                <h3 class="text-2xl font-semibold mb-2">AirPods</h3>
+                <p class="text-lg text-gray-600 mb-4">Đẹp biểu tượng, Hay phi thường.</p>
+                <img src="https://images.macrumors.com/t/XOqDXIikmNzfVwYVCvCCCSQO9HY=/1600x0/article-new/2022/09/airpods-lineup-apple.jpg" alt="AirPods product image" class="mx-auto my-4 rounded-md">
+                <div class="flex justify-center space-x-4 text-base">
+                    <a href="#" class="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">Tìm Hiểu Thêm ></a>
+                    <a href="#" class="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">Mua ></a>
+                </div>
+            </div>
+
+            <!-- Product Card 4 -->
+            <div class="product-card p-6 text-center">
+                <h3 class="text-2xl font-semibold mb-2">Apple Vision Pro</h3>
+                <p class="text-lg text-gray-600 mb-4">Kỷ nguyên của điện toán không gian đã đến.</p>
+                <img src="https://appleprice.co.ke/wp-content/uploads/2024/05/Apple-Vision-Pro-B.jpg" alt="Apple Vision Pro Product image" class="mx-auto my-4 rounded-md">
+                <div class="flex justify-center space-x-4 text-base">
+                    <a href="#" class="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">Tìm Hiểu Thêm ></a>
+                    <a href="#" class="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">Mua ></a>
+                </div>
+            </div>
+
+            <!-- Product Card 5 -->
+            <div class="product-card p-6 text-center">
+                <h3 class="text-2xl font-semibold mb-2">Apple TV 4K</h3>
+                <p class="text-lg text-gray-600 mb-4">Trải nghiệm của Apple. Điện ảnh theo mọi nghĩa.</p>
+                <img src="https://product.hstatic.net/200000348419/product/apple_tv_4k_2022_0_419b31904d874dad8afbe90c1a2259c6.png" alt="Apple TV 4K product image" class="mx-auto my-4 rounded-md">
+                <div class="flex justify-center space-x-4 text-base">
+                    <a href="#" class="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">Tìm Hiểu Thêm ></a>
+                    <a href="#" class="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">Mua ></a>
+                </div>
+            </div>
+
+            <!-- Product Card 6 -->
+            <div class="product-card p-6 text-center">
+                <h3 class="text-2xl font-semibold mb-2">HomePod</h3>
+                <p class="text-lg text-gray-600 mb-4">Âm thanh sâu lắng. Âm thanh đáng ngạc nhiên so với kích thước của nó.</p>
+                <img src="https://www.macworld.com/wp-content/uploads/2023/01/homepod-mini-homepod-100862085-orig.jpg?quality=50&strip=all&w=1024" alt="HomePods Product image" class="mx-auto my-4 rounded-md">
+                <div class="flex justify-center space-x-4 text-base">
+                    <a href="#" class="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">Tìm Hiểu Thêm ></a>
+                    <a href="#" class="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">Mua ></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-100 text-gray-600 text-xs py-10 px-4">
+        <div class="container mx-auto max-w-4xl">
+            <p class="mb-4">
+                1. Đơn hàng phải được đặt trên Apple Store Trực Tuyến apple.com/vn.
+            </p>
+            <p class="mb-4">
+                2. Apple Watch Ultra 2, Apple Watch Series 10 và Apple Watch SE tương thích với iPhone Xs trở lên sử dụng iOS 18 trở lên.
+            </p>
+            <p class="mb-4">
+                3. Apple Arcade, Apple Fitness+, Apple Music, and Apple TV+ yêu cầu đăng ký thuê bao.
+            </p>
+            <p class="mb-4">
+                4. Các tính năng có thể thay đổi. Một số tính năng, ứng dụng và dịch vụ có thể không khả dụng ở mọi khu vực hoặc mọi ngôn ngữ.
+            </p>
+            <hr class="my-6 border-gray-300">
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-6 mb-8">
+                <div>
+                    <h4 class="font-semibold text-gray-800 mb-2">Mua Sắm và Tìm Hiểu</h4>
+                    <ul>
+                        <li><a href="#" class="hover:underline">Cửa Hàng</a></li>
+                        <li><a href="#" class="hover:underline">Mac</a></li>
+                        <li><a href="#" class="hover:underline">iPad</a></li>
+                        <li><a href="#" class="hover:underline">iPhone</a></li>
+                        <li><a href="#" class="hover:underline">Watch</a></li>
+                        <li><a href="#" class="hover:underline">AirPods</a></li>
+                        <li><a href="#" class="hover:underline">TV & Nhà</a></li>
+                        <li><a href="#" class="hover:underline">AirTag</a></li>
+                        <li><a href="#" class="hover:underline">Phụ Kiện</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-gray-800 mb-2">Giải Trí</h4>
+                    <ul>
+                        <li><a href="#" class="hover:underline">Apple One</a></li>
+                        <li><a href="#" class="hover:underline">Apple TV+</a></li>
+                        <li><a href="#" class="hover:underline">Apple Music</a></li>
+                        <li><a href="#" class="hover:underline">Apple Arcade</a></li>
+                        <li><a href="#" class="hover:underline">Apple Podcasts</a></li>
+                        <li><a href="#" class="hover:underline">Apple Books</a></li>
+                    </ul>
+                    <h4 class="font-semibold text-gray-800 mt-4 mb-2">Tài Khoản</h4>
+                    <ul>
+                        <li><a href="#" class="hover:underline">Quản lý tài khoản Apple của bạn</a></li>
+                        <li><a href="#" class="hover:underline">Tài Khoản Apple Store</a></li>
+                        <li><a href="#" class="hover:underline">iCloud.com</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-gray-800 mb-2">Apple Store</h4>
+                    <ul>
+                        <li><a href="#" class="hover:underline">Ứng Dụng Apple Store</a></li>
+                        <li><a href="#" class="hover:underline">Apple Trade In</a></li>
+                        <li><a href="#" class="hover:underline">Tài Chính</a></li>
+                        <li><a href="#" class="hover:underline">Tình Trạng Đơn Hàng</a></li>
+                        <li><a href="#" class="hover:underline">Hỗ Trợ Mua Hàng</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-gray-800 mb-2">Dành Cho Doanh Nghiệp</h4>
+                    <ul>
+                        <li><a href="#" class="hover:underline">Apple và Doanh Nghiệp</a></li>
+                        <li><a href="#" class="hover:underline">Mua hàng cho Doanh Nghiệp</a></li>
+                    </ul>
+                    <h4 class="font-semibold text-gray-800 mt-4 mb-2">Dành cho Giáo Dục</h4>
+                    <ul>
+                        <li><a href="#" class="hover:underline">Apple và Giáo Dục</a></li>
+                        <li><a href="#" class="hover:underline">Mua Hàng Cho Bậc Đại Học</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-gray-800 mb-2">Giá Trị cốt lõi xủa Apple</h4>
+                    <ul>
+                        <li><a href="#" class="hover:underline">Trợ Năng</a></li>
+                        <li><a href="#" class="hover:underline">Môi Trường</a></li>
+                        <li><a href="#" class="hover:underline">Quyền Riêng Tư</a></li>
+                        <li><a href="#" class="hover:underline">Chuỗi Cung Ứng</a></li>
+                    </ul>
+                    <h4 class="font-semibold text-gray-800 mt-4 mb-2">Về Apple</h4>
+                    <ul>
+                        <li><a href="#" class="hover:underline">Newsroom</a></li>
+                        <li><a href="#" class="hover:underline">Lãnh Đạo của Apple</a></li>
+                        <li><a href="#" class="hover:underline">Nhà Đầu Tư</a></li>
+                        <li><a href="#" class="hover:underline">Đạo Đức và Quy Tắc</a></li>
+                        <li><a href="#" class="hover:underline">Sự Kiện</a></li>
+                        <li><a href="#" class="hover:underline">Liên Hệ Apple</a></li>
+                    </ul>
+                </div>
+            </div>
+            <p class="mt-8">
+                Xem thêm cách để mua hàng: <a href="#" class="text-blue-500 hover:underline">Tìm kiếm cửa hàng bán lẻ</a> <a href="#" class="text-blue-500 hover:underline">  </a> gần bạn. Hoặc gọi 18001192.
+            </p>
+            <hr class="my-6 border-gray-300">
+            <div class="flex flex-col md:flex-row justify-between items-center text-gray-500">
+                <p>Bản quyền © Apple Inc. 2025 Bảo lưu mọi quyền.</p>
+                <div class="flex space-x-4 mt-2 md:mt-0">
+                    <a href="#" class="hover:underline">Chính sách quyền riêng tư</a>
+                    <span class="text-gray-400">|</span>
+                    <a href="#" class="hover:underline">Điều khoản sử dụng</a>
+                    <span class="text-gray-400">|</span>
+                    <a href="#" class="hover:underline">Bán Hàng và Hoàn Tiền</a>
+                    <span class="text-gray-400">|</span>
+                    <a href="#" class="hover:underline">Pháp lý</a>
+                    <span class="text-gray-400">|</span>
+                    <a href="#" class="hover:underline">Bản Đồ Trang Web</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript for mobile menu toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+            } else {
+                mobileMenu.classList.add('hidden');
+            }
+        }
+
+        // Optional: Smooth scrolling for anchor links (if you add them later)
+       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+    </script>
+</body>
+</html>
